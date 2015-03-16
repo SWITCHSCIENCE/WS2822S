@@ -10,3 +10,8 @@ WS2822S
 > Ws2822s.h
 
 > keywords.txt
+
+*動作確認 Arduino Uno
+
+使い方
+=============
