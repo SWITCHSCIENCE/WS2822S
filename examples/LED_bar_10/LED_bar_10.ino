@@ -8,31 +8,29 @@
 //******************************************************************
 
 #include "Ws2822s.h"
-#define PIXEL_NUM 10    //使用するWS2822Sの数
-#define LED_PIN 13      //WS2822SのDAIピンにつなげるArduinoのピン番号
+#define NUM_PIXELS 10 // 使用するWS2822Sの数
+#define LED_PIN 13 // WS2822SのDAIピンにつなげるArduinoのピン番号
 
-Ws2822s LED(LED_PIN , PIXEL_NUM);
+Ws2822s LED(LED_PIN, NUM_PIXELS);
 
 void setup()
 {
-    
-}
-void loop()
-{     
-  for(int i=0;i<PIXEL_NUM;i++){
-      LED.setColor(i              ,0xFF,0x00,0x00);
-      LED.setColor((i+1)%PIXEL_NUM,0xFF,0xFF,0x00);
-      LED.setColor((i+2)%PIXEL_NUM,0x00,0xFF,0x00);
-      LED.setColor((i+3)%PIXEL_NUM,0x00,0xFF,0xFF);
-      LED.setColor((i+4)%PIXEL_NUM,0x00,0x00,0xFF);
-      LED.setColor((i+5)%PIXEL_NUM,0xFF,0x00,0xFF);
-      LED.setColor((i+6)%PIXEL_NUM,0x00,0x00,0x00);
-      LED.setColor((i+7)%PIXEL_NUM,0x00,0x00,0x00);
-      LED.setColor((i+8)%PIXEL_NUM,0x00,0x00,0x00);
-      LED.setColor((i+9)%PIXEL_NUM,0x00,0x00,0x00);
-      LED.send();
-      delay(300);
-  }
-  
 }
 
+void loop()
+{
+  for (int i = 0; i < NUM_PIXELS; ++i) {
+    LED.setColor(i, 0xFF, 0x00, 0x00);
+    LED.setColor((i + 1) % NUM_PIXELS, 0xFF, 0xFF, 0x00);
+    LED.setColor((i + 2) % NUM_PIXELS, 0x00, 0xFF, 0x00);
+    LED.setColor((i + 3) % NUM_PIXELS, 0x00, 0xFF, 0xFF);
+    LED.setColor((i + 4) % NUM_PIXELS, 0x00, 0x00, 0xFF);
+    LED.setColor((i + 5) % NUM_PIXELS, 0xFF, 0x00, 0xFF);
+    LED.setColor((i + 6) % NUM_PIXELS, 0x00, 0x00, 0x00);
+    LED.setColor((i + 7) % NUM_PIXELS, 0x00, 0x00, 0x00);
+    LED.setColor((i + 8) % NUM_PIXELS, 0x00, 0x00, 0x00);
+    LED.setColor((i + 9) % NUM_PIXELS, 0x00, 0x00, 0x00);
+    LED.send();
+    delay(300);
+  }
+}
