@@ -142,34 +142,34 @@ void Ws2822s::setAddress(int start_pixel, int end_pixel)
     channel_rv = ((channel_rv & 0x33) << 2) | ((channel_rv & 0xCC) >>2);
     channel_rv = ((channel_rv << 4) | (channel_rv >> 4));
 
-    sendByte((channel_rv & 0x00FF), out_adri, bit_address);
+    sendByte((channel_rv & 0x00FF), out_adri, bit_address); //send Frame channel(1+m)
     if (channel >= 0 && channel < 256)
-      temp = 0x0F;
+      temp = 0x0F;					//0xF0 -> 0b11110000 -reverse order-> 0b00001111 -> 0x0F
     else if (channel >= 256 && channel < 512)
-      temp = 0x87;
+      temp = 0x87;					//0xE1 -> 0b11100001 -reverse order-> 0b10000111 -> 0x87
     else if (channel >= 512 && channel < 768)
-      temp = 0x4B;
+      temp = 0x4B;					//0xD2 -> 0b11010010 -reverse order-> 0b01001011 -> 0x4B
     else if (channel >= 768 && channel < 1024)
-      temp = 0xC3;
+      temp = 0xC3;					//0xC3 -> 0b11000011 -reverse order-> 0b11000011 -> 0xC3
     else if (channel >= 1024 && channel < 1280)
-      temp = 0x2D;
+      temp = 0x2D;					//0xB4 -> 0b10110100 -reverse order-> 0b00101101 -> 0x2D
     else if (channel >= 1280 && channel < 1536)
-      temp = 0xA5;
+      temp = 0xA5;					//0xA5 -> 0b10100101 -reverse order-> 0b10100101 -> 0xA5
     else if (channel >= 1536 && channel < 1792)
-      temp = 0x69;
+      temp = 0x69;					//0x96 -> 0b10010110 -reverse order-> 0b01101001 -> 0x69
     else if (channel >= 1792 && channel < 2048)
-      temp = 0xE1;
+      temp = 0xE1;					//0x87 -> 0b10000111 -reverse order-> 0b11100001 -> 0xE1
     else if (channel >= 2048 && channel < 2304)
-      temp = 0x1E;
-    else if (channel >= 2304 && channel < 2560)
-      temp = 0x96;
+      temp = 0x1E;					//0x78 -> 0b01111000 -reverse order-> 0b00011110 -> 0x1E
+    else if (channel >= 2304 && channel < 2560)		
+      temp = 0x96;					//0x69 -> 0b01101001 -reverse order-> 0b10010110 -> 0x96
     else if (channel >= 2560 && channel < 2816)
-      temp = 0x5A;
-    else if (channel >= 2816 && channel < 3072)
-      temp = 0xD2;
-    sendByte(temp, out_adri, bit_address);
-    temp = 0x4B;
-    sendByte(temp, out_adri, bit_address);
+      temp = 0x5A;					//0x5A -> 0b01011010 -reverse order-> 0b01011010 -> 0x5A
+    else if (channel >= 2816 && channel < 3072)		
+      temp = 0xD2;					//0x4B -> 0b01001011 -reverse order-> 0b11010010 -> 0xD2
+    sendByte(temp, out_adri, bit_address);		//send Frame channel (2+m)
+    temp = 0x4B;					//0xD2 -> 0b11010010 -reverse order-> 0b01001011 -> 0x4B
+    sendByte(temp, out_adri, bit_address);		//send Frame channel (3+m)
   }
   SREG = oldSREG;
   sei();
