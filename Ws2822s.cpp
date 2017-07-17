@@ -8,7 +8,6 @@
 // アドレス設定  setAddress(LEDの先頭番号、LEDの末尾番号)
 //******************************************************************
 
-#include "arduino.h"
 #include "Ws2822s.h"
 
 Ws2822s::Ws2822s(uint8_t dai,int pixel_num)

@@ -10,7 +10,7 @@
 
 #ifndef Ws2822s_h
 #define Ws2822s_h
-#include "arduino.h"
+#include "Arduino.h"
 
 class Ws2822s
 {
